@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import Chessboard from "chessboardjsx";
 import ChessHubConnectionFactory from "../services/chess-hub-connection-factory";
-import ChessHubReceiverHandler from "../services/chess-hub-receiver-handler";
+import ChessHubHandler from "../services/chess-hub-receiver-handler";
 const Chess = require("chess.js");
 
 const ReactiveChessBoard = () => {
@@ -13,7 +13,7 @@ const ReactiveChessBoard = () => {
     const [chess] = useState(new Chess());
     const [fen, setFen] = useState(chess.fen());
     const connectionFactory = new ChessHubConnectionFactory();
-    const chessHubReceiverHandler = new ChessHubReceiverHandler();
+    const chessHubReceiverHandler = new ChessHubHandler();
 
     useEffect(() => {
         setConnection(connectionFactory.createConnection());

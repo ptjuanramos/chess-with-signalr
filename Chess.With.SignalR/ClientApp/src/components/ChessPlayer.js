@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ChessHubConnectionFactory from "../services/chess-hub-connection-factory";
-import ChessHubReceiverHandler from "../services/chess-hub-receiver-handler";
+import ChessHubHandler from "../services/chess-hub-receiver-handler";
 
 const ChessPlayer = () => {
     const [connection, setConnection] = useState(null);
     const [inputText, setInputText] = useState("");
 
     const connectionFactory = new ChessHubConnectionFactory();
-    const chessHubReceiverHandler = new ChessHubReceiverHandler();
+    const chessHubHandler = new ChessHubHandler();
 
     useEffect(() => {
         setConnection(connectionFactory.createConnection());
@@ -15,13 +15,13 @@ const ChessPlayer = () => {
 
     useEffect(() => {
         if (connection) {
-            chessHubReceiverHandler.startConnection(connection);
+            chessHubHandler.startConnection(connection);
         }
     }, [connection]);
 
     const makeMove = async () => {
         if (connection) {
-            await connection.send("MakeMove", inputText);
+            await chessHubHandler.makeMove(inputText);
         }  
 
         setInputText("");

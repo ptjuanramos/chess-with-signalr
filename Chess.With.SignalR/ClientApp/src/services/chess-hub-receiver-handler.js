@@ -1,4 +1,4 @@
-export default class ChessHubReceiverHandler {
+export default class ChessHubHandler {
 
     startConnection(connection) {
         return connection
@@ -14,6 +14,10 @@ export default class ChessHubReceiverHandler {
                     receiverhandler(message);
                 });
             });
+    }
+
+    async makeMove(connection, move) {
+        await connection.send("MakeMove", move);
     }
 
 }
