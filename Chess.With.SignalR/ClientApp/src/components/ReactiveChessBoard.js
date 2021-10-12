@@ -7,9 +7,8 @@ const Chess = require("chess.js");
 
 const ReactiveChessBoard = () => {
     const [connection, setConnection] = useState(null);
-    const [inputText, setInputText] = useState("");
-    const [nextMovePlayer, setNextMovePlayer] = useState('b');
-    const [gameIsOver, setGameIsOver] = useState(false);
+    // const [nextMovePlayer, setNextMovePlayer] = useState('b');
+    // const [gameIsOver, setGameIsOver] = useState(false);
 
     const [chess] = useState(new Chess());
     const [fen, setFen] = useState(chess.fen());
@@ -23,7 +22,7 @@ const ReactiveChessBoard = () => {
     useEffect(() => {
         if (connection) {
             chessHubReceiverHandler
-                .handleStartAndReceive(connection, (message) => {
+                .startAndReceive(connection, (message) => {
                     let move = message.split(",");
                     handleMove({ from: move[0], to: move[1], promotion: 'q'});
                 });
@@ -64,10 +63,6 @@ const ReactiveChessBoard = () => {
             <div class="panel panel-default">
                 <div className="panel-heading">
                     <b>Game is Over</b>
-                </div>
-
-                <div className="panel-body">
-                    Panel content
                 </div>
             </div>
         </div>

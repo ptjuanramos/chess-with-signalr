@@ -6,7 +6,7 @@ export default class ChessHubReceiverHandler {
             .catch((error) => console.log(error));
     }
 
-    handleStartAndReceive(connection, receiverhandler) {
+    startAndReceive(connection, receiverhandler) {
         connection
             .start()
             .then(() => {
