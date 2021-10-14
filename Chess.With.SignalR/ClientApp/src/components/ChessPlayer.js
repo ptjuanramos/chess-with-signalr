@@ -21,7 +21,7 @@ const ChessPlayer = () => {
 
     const makeMove = async () => {
         if (connection) {
-            await chessHubHandler.makeMove(inputText);
+            await chessHubHandler.makeMove(connection, inputText);
         }  
 
         setInputText("");

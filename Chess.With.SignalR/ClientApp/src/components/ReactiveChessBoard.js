@@ -34,10 +34,7 @@ const ReactiveChessBoard = () => {
             setFen(chess.fen());
         }
 
-        if (chess.game_over()) {
-            handleGameOver();
-        }
-
+        handleGameOver();
     };
 
     const handleGameOver = () => {
